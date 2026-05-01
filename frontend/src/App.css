@@ -1,184 +1,858 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ============================================
+   FINANCE TRACKER - RESPONSIVE DESIGN
+   File: App.css
+   Role: Sharleen Salma(Responsive Design Developer)
+   ============================================ */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
-}
-
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
+/* ============================================
+   1. CSS RESET & BASE
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
   padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+  box-sizing: border-box;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
 }
 
-.ticks {
-  position: relative;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* ============================================
+   2. MAIN APP CONTAINER
+   ============================================ */
+#root {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+/* ============================================
+   3. HEADER
+   ============================================ */
+h1 {
+  text-align: center;
+  font-size: 1.75rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   4. BALANCE DISPLAY
+   ============================================ */
+.balance-display,
+.balance {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.balance-display h2,
+.balance h2,
+.balance-display p,
+.balance p {
+  font-size: 1rem;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.balance-display h3,
+.balance h3,
+.balance-display .amount,
+.balance .amount,
+.balance-amount {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+/* ============================================
+   5. INCOME & EXPENSE DISPLAY
+   ============================================ */
+.inc-exp-container,
+.income-expense,
+.summary-cards,
+.summary {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.inc-exp-container > div,
+.income-expense > div,
+.summary-cards > div,
+.summary > div,
+.inc-exp-container > .card,
+.income-expense > .card,
+.summary-cards > .card,
+.summary > .card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.inc-exp-container > div:first-child,
+.income-expense > div:first-child,
+.summary-cards > div:first-child,
+.summary > div:first-child,
+.inc-exp-container .income-card,
+.income-expense .income-card,
+.summary-cards .income-card,
+.summary .income-card,
+.inc-exp-container .plus,
+.income-expense .plus,
+.summary-cards .plus,
+.summary .plus {
+  border-bottom: 4px solid #2ecc71;
+}
+
+.inc-exp-container > div:last-child,
+.income-expense > div:last-child,
+.summary-cards > div:last-child,
+.summary > div:last-child,
+.inc-exp-container .expense-card,
+.income-expense .expense-card,
+.summary-cards .expense-card,
+.summary .expense-card,
+.inc-exp-container .minus,
+.income-expense .minus,
+.summary-cards .minus,
+.summary .minus {
+  border-bottom: 4px solid #e74c3c;
+}
+
+.inc-exp-container h4,
+.income-expense h4,
+.summary-cards h4,
+.summary h4,
+.inc-exp-container h3,
+.income-expense h3,
+.summary-cards h3,
+.summary h3 {
+  font-size: 0.875rem;
+  color: #7f8c8d;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.money,
+.amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.money.plus,
+.amount.plus,
+.income-amount {
+  color: #2ecc71;
+}
+
+.money.minus,
+.amount.minus,
+.expense-amount {
+  color: #e74c3c;
+}
+
+/* ============================================
+   6. FORM SECTION
+   ============================================ */
+.form-section,
+.transaction-form,
+.form-container {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.form-section h2,
+.transaction-form h2,
+.form-container h2,
+.form-section h3,
+.transaction-form h3,
+.form-container h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.form-control,
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control label,
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.375rem;
+  color: #555;
+}
+
+.form-control input,
+.form-group input,
+.form-control select,
+.form-group select,
+.form-control textarea,
+.form-group textarea {
+  width: 100%;
+  padding: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: white;
+}
+
+.form-control input:focus,
+.form-group input:focus,
+.form-control select:focus,
+.form-group select:focus,
+.form-control textarea:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-control input::placeholder,
+.form-group input::placeholder {
+  color: #bbb;
+}
+
+/* ============================================
+   7. BUTTONS
+   ============================================ */
+.btn,
+button[type="submit"],
+button[type="button"],
+.add-btn,
+.submit-btn {
+  width: 100%;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  font-family: inherit;
+}
+
+.btn:focus,
+button:focus,
+.add-btn:focus,
+.submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.btn:hover,
+button:hover,
+.add-btn:hover,
+.submit-btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active,
+button:active,
+.add-btn:active,
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Add Transaction Button */
+.btn-add,
+.add-btn,
+button[type="submit"] {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-add:hover,
+.add-btn:hover,
+button[type="submit"]:hover {
+  background-color: #5a67d8;
+}
+
+/* Income Button */
+.btn-income,
+.income-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.btn-income:hover,
+.income-btn:hover {
+  background-color: #27ae60;
+}
+
+/* Expense Button */
+.btn-expense,
+.expense-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-expense:hover,
+.expense-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Delete Button */
+.delete-btn,
+.btn-delete,
+.remove-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.3s;
+  width: auto;
+  margin-bottom: 0;
+}
+
+.delete-btn:hover,
+.btn-delete:hover,
+.remove-btn:hover {
+  background-color: #c0392b;
+}
+
+/* ============================================
+   8. TRANSACTION LIST
+   ============================================ */
+.transactions-section,
+.transaction-list,
+.list-section {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.transactions-section h2,
+.transaction-list h2,
+.list-section h2,
+.transactions-section h3,
+.transaction-list h3,
+.list-section h3 {
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.list,
+.transactions,
+.transaction-items {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.list li,
+.transactions li,
+.transaction-items li,
+.transaction-item,
+.transaction-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 0.875rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  border-right: 4px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list li:hover,
+.transactions li:hover,
+.transaction-items li:hover,
+.transaction-item:hover,
+.transaction-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.list li:hover .delete-btn,
+.transactions li:hover .delete-btn,
+.transaction-items li:hover .delete-btn,
+.transaction-item:hover .delete-btn,
+.transaction-card:hover .delete-btn,
+.list li:hover .btn-delete,
+.transactions li:hover .btn-delete,
+.transaction-items li:hover .btn-delete,
+.transaction-item:hover .btn-delete,
+.transaction-card:hover .btn-delete {
+  opacity: 1;
+}
+
+.list li.plus,
+.transactions li.plus,
+.transaction-items li.plus,
+.transaction-item.income,
+.transaction-card.income,
+.transaction-item.plus,
+.transaction-card.plus {
+  border-right-color: #2ecc71;
+}
+
+.list li.minus,
+.transactions li.minus,
+.transaction-items li.minus,
+.transaction-item.expense,
+.transaction-card.expense,
+.transaction-item.minus,
+.transaction-card.minus {
+  border-right-color: #e74c3c;
+}
+
+.transaction-info,
+.transaction-details {
+  flex: 1;
+}
+
+.transaction-info span,
+.transaction-details span,
+.transaction-desc,
+.transaction-description {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #2c3e50;
+  display: block;
+}
+
+.transaction-date,
+.transaction-info .date,
+.transaction-details .date {
+  font-size: 0.75rem;
+  color: #95a5a6;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.transaction-amount,
+.amount-display {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-right: 0.75rem;
+}
+
+.transaction-amount.plus,
+.amount-display.plus {
+  color: #2ecc71;
+}
+
+.transaction-amount.minus,
+.amount-display.minus {
+  color: #e74c3c;
+}
+
+/* ============================================
+   9. EMPTY STATE
+   ============================================ */
+.list:empty::after,
+.transactions:empty::after,
+.transaction-items:empty::after {
+  content: "No transactions yet. Add one above!";
+  display: block;
+  text-align: center;
+  padding: 2rem;
+  color: #95a5a6;
+  font-size: 0.9375rem;
+}
+
+.empty-state,
+.no-transactions {
+  text-align: center;
+  padding: 2rem;
+  color: #95a5a6;
+}
+
+.empty-state p,
+.no-transactions p {
+  font-size: 0.9375rem;
+}
+
+/* ============================================
+   10. TABLET (768px+)
+   ============================================ */
+@media screen and (min-width: 768px) {
+  body {
+    padding: 1.5rem;
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  #root {
+    padding: 0 1rem;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  .balance-display,
+  .balance {
+    padding: 2rem;
+  }
+
+  .balance-display h3,
+  .balance h3,
+  .balance-display .amount,
+  .balance .amount,
+  .balance-amount {
+    font-size: 2.5rem;
+  }
+
+  /* Side-by-side income/expense */
+  .inc-exp-container,
+  .income-expense,
+  .summary-cards,
+  .summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .inc-exp-container > div,
+  .income-expense > div,
+  .summary-cards > div,
+  .summary > div {
+    padding: 1.5rem;
+  }
+
+  .money,
+  .amount {
+    font-size: 1.75rem;
+  }
+
+  /* Form section */
+  .form-section,
+  .transaction-form,
+  .form-container {
+    padding: 1.5rem;
+  }
+
+  /* Buttons side by side */
+  .button-group,
+  .btn-group,
+  .form-buttons {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn,
+  button[type="submit"],
+  button[type="button"],
+  .add-btn,
+  .submit-btn {
+    width: auto;
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  /* Transaction list */
+  .transactions-section,
+  .transaction-list,
+  .list-section {
+    padding: 1.5rem;
+  }
+
+  .list li,
+  .transactions li,
+  .transaction-items li,
+  .transaction-item,
+  .transaction-card {
+    padding: 1rem 1.25rem;
+  }
+
+  .transaction-info span,
+  .transaction-details span,
+  .transaction-desc,
+  .transaction-description {
+    font-size: 1rem;
+  }
+
+  .transaction-amount,
+  .amount-display {
+    font-size: 1.125rem;
+  }
+}
+
+/* ============================================
+   11. DESKTOP (1024px+)
+   ============================================ */
+@media screen and (min-width: 1024px) {
+  body {
+    padding: 2rem;
+  }
+
+  #root {
+    padding: 0 1.5rem;
+  }
+
+  /* Main Layout: Form + Transactions side by side */
+  .main-content,
+  .app-content,
+  .content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .form-section,
+  .transaction-form,
+  .form-container,
+  .transactions-section,
+  .transaction-list,
+  .list-section {
+    margin-bottom: 0;
+  }
+
+  .balance-display,
+  .balance {
+    padding: 2.5rem;
+  }
+
+  .balance-display h3,
+  .balance h3,
+  .balance-display .amount,
+  .balance .amount,
+  .balance-amount {
+    font-size: 3rem;
+  }
+
+  .inc-exp-container,
+  .income-expense,
+  .summary-cards,
+  .summary {
+    gap: 1.5rem;
+  }
+
+  .inc-exp-container > div,
+  .income-expense > div,
+  .summary-cards > div,
+  .summary > div {
+    padding: 2rem;
+  }
+
+  .money,
+  .amount {
+    font-size: 2rem;
+  }
+
+  .btn,
+  button[type="submit"],
+  button[type="button"],
+  .add-btn,
+  .submit-btn {
+    padding: 1rem;
+    font-size: 1.0625rem;
+  }
+
+  .list li,
+  .transactions li,
+  .transaction-items li,
+  .transaction-item,
+  .transaction-card {
+    padding: 1.125rem 1.5rem;
+  }
+}
+
+/* ============================================
+   12. LARGE DESKTOP (1440px+)
+   ============================================ */
+@media screen and (min-width: 1440px) {
+  #root {
+    max-width: 1400px;
+  }
+
+  .main-content,
+  .app-content,
+  .content-wrapper {
+    grid-template-columns: 2fr 3fr;
+    gap: 2rem;
+  }
+
+  .balance-display h3,
+  .balance h3,
+  .balance-display .amount,
+  .balance .amount,
+  .balance-amount {
+    font-size: 3.5rem;
+  }
+}
+
+/* ============================================
+   13. SMALL MOBILE FIXES (< 360px)
+   ============================================ */
+@media screen and (max-width: 359px) {
+  html {
+    font-size: 14px;
+  }
+
+  body {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .balance-display,
+  .balance {
+    padding: 1rem;
+  }
+
+  .balance-display h3,
+  .balance h3,
+  .balance-display .amount,
+  .balance .amount,
+  .balance-amount {
+    font-size: 1.75rem;
+  }
+
+  .btn,
+  button[type="submit"],
+  button[type="button"],
+  .add-btn,
+  .submit-btn {
+    padding: 0.75rem;
+  }
+
+  .list li,
+  .transactions li,
+  .transaction-items li,
+  .transaction-item,
+  .transaction-card {
+    padding: 0.75rem;
+  }
+}
+
+/* ============================================
+   14. ACCESSIBILITY - REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .list li:hover,
+  .transactions li:hover,
+  .transaction-items li:hover,
+  .transaction-item:hover,
+  .transaction-card:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   15. DARK MODE SUPPORT
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+  }
+
+  .inc-exp-container > div,
+  .income-expense > div,
+  .summary-cards > div,
+  .summary > div,
+  .form-section,
+  .transaction-form,
+  .form-container,
+  .transactions-section,
+  .transaction-list,
+  .list-section,
+  .list li,
+  .transactions li,
+  .transaction-items li,
+  .transaction-item,
+  .transaction-card {
+    background-color: #16213e;
+    color: #e0e0e0;
+  }
+
+  .form-control input,
+  .form-group input,
+  .form-control select,
+  .form-group select,
+  .form-control textarea,
+  .form-group textarea {
+    background-color: #0f3460;
+    border-color: #1a1a2e;
+    color: #e0e0e0;
+  }
+
+  .form-control input::placeholder,
+  .form-group input::placeholder {
+    color: #7f8c8d;
+  }
+
+  .list li:hover,
+  .transactions li:hover,
+  .transaction-items li:hover,
+  .transaction-item:hover,
+  .transaction-card:hover {
+    background-color: #1a1a2e;
+  }
+
+  h1,
+  .form-section h2,
+  .transaction-form h2,
+  .form-container h2,
+  .transactions-section h2,
+  .transaction-list h2,
+  .list-section h2,
+  .form-section h3,
+  .transaction-form h3,
+  .form-container h3,
+  .transactions-section h3,
+  .transaction-list h3,
+  .list-section h3,
+  .transaction-info span,
+  .transaction-details span,
+  .transaction-desc,
+  .transaction-description {
+    color: #e0e0e0;
   }
 }
