@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker | Team Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="app-container">
+        <!-- HEADER SECTION -->
+        <header id="main-header">
+            <h1>💰 Finance Tracker</h1>
+            <div class="balance-container">
+                <h2>Your Balance</h2>
+                <p id="balance-amount">$0.00</p>
+            </div>
+        </header>
+
+        <!-- INCOME & EXPENSE SUMMARY -->
+        <section id="summary-section" class="flex-row">
+            <div class="card income-card">
+                <h3>Income</h3>
+                <p id="total-income" class="money plus">$0.00</p>
+            </div>
+            <div class="card expense-card">
+                <h3>Expenses</h3>
+                <p id="total-expenses" class="money minus">$0.00</p>
+            </div>
+        </section>
+
+        <!-- TRANSACTION FORM SECTION -->
+        <section id="transaction-form-section">
+            <h3>Add New Transaction</h3>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input 
+                        type="text" 
+                        id="description" 
+                        placeholder="e.g., Salary, Groceries, Rent"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount ($)</label>
+                    <input 
+                        type="number" 
+                        id="amount" 
+                        placeholder="Positive = Income, Negative = Expense"
+                        step="0.01"
+                        required
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary">➕ Add Transaction</button>
+            </form>
+        </section>
+
+        <!-- TRANSACTION HISTORY SECTION -->
+        <section id="history-section">
+            <h3>Transaction History</h3>
+            <button id="clear-all-btn" class="btn btn-danger">🗑️ Clear All</button>
+            <ul id="transaction-list" class="list">
+                <li class="empty-message">No transactions yet. Add your first transaction above 👆</li>
+            </ul>
+        </section>
+    </main>
+
+    <script src="income.js"></script>
+    <script src="expense.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

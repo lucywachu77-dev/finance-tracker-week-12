@@ -1,75 +1,119 @@
-# 💰 Finance Tracker — Week 12 Full-Stack submissions
+# 💰 Finance Tracker — Week 12 Full-Stack Project
 
-A full-stack finance tracker that lets users log income and expenses, auto-calculates balance, and manages all transactions. 
+A full-stack Finance Tracker application that allows users to add income and expenses, automatically calculate balance, and manage transactions through a RESTful API.
 
-**Submission Date:** 1st May 2026  
-**GitHub:** https://github.com/lucywachu77-dev/finance-tracker-week-12
+---
+
+## 📅 Submission Details
+- **Submission Date:** 1st May 2026  
+- **GitHub Repository:** https://github.com/lucywachu77-dev/finance-tracker-week-12  
+
+---
 
 ## 👥 Team Week 12
 
 | Name | Role | Area |
-| --- | --- | --- |
-| Team Leader | Overall Management & Integration | GitHub, merging, testing, deployment |
-| Martin Mburu Kinyanjui | HTML Structure Lead | Frontend layout - `App.jsx`, `Layout.jsx` |
-| Moureen Gacheri | HTML Forms Developer | `TransactionForm.jsx` |
-| Michelle Terer | Main CSS Designer | Global styles, colors, fonts, `App.css` |
-| Maria Jones Anyango | Component Styling | Buttons, cards, transaction list styles |
-| Erick Kamau Muiruri | Responsive Design | Mobile/tablet/desktop breakpoints |
+|------|------|------|
+| Lucy Wachu | Team Leader | Overall Management, Integration, GitHub, Testing, Deployment |
+| Martin Mburu Kinyanjui | HTML Structure Lead | Frontend layout (`App.jsx`, structure) |
+| Moureen Gacheri | HTML Forms Developer | Transaction form (`TransactionForm.jsx`) |
+| Michelle Terer | Main CSS Designer | Global styles, colors, fonts (`App.css`) |
+| Maria Jones Anyango | Component Styling | Buttons, cards, transaction UI |
+| Sharleen Salma | Responsive Design Developer | Mobile/tablet/desktop responsiveness |
 | Dolla Grace Ambwaya | Income Module (JS) | Add income logic, display income |
-| Naomi Murugi | Expense Module (JS) | Add expense logic, deduct from balance |
+| Naomi Murugi | Expense Module (JS) | Add expense logic, deduct balance |
 | Patrick Ngigi Njoroge | Core JS Logic | Display transactions, delete, auto balance |
-| Juliet Adhiambo | Testing & Documentation | QA, README, demo notes |
+| Juliet Adhiambo | Testing & Documentation | QA testing, README, demo notes |
+
+---
 
 ## 🚀 Features
-1. **Add Transactions**: Create income or expense with amount, description, date
-2. **View Transactions**: Dynamic list of all transactions from database
-3. **Delete Transactions**: Remove any entry by ID
-4. **Auto Balance**: Balance updates instantly = `Total Income - Total Expenses`
-5. **Responsive UI**: Works on mobile, tablet, desktop
-6. **RESTful API**: Backend with GET, POST, DELETE endpoints
-7. **CORS Enabled**: Frontend and backend communicate seamlessly
+
+- Add income and expense transactions
+- View all transactions dynamically
+- Delete transactions
+- Automatic balance calculation
+- Responsive UI (mobile, tablet, desktop)
+- RESTful API (GET, POST, DELETE)
+- Frontend & backend communication via CORS
+
+---
 
 ## 🛠 Tech Stack
-**Frontend:** React 18, Vite, CSS3  
-**Backend:** Node.js, Express.js, CORS middleware  
-**Language:** JavaScript (ES6)  
-**Tools:** Git, GitHub, npm, ESLint
+
+**Frontend:**
+- React (Vite)
+- CSS3
+
+**Backend:**
+- Node.js
+- Express.js
+- CORS
+
+**Tools:**
+- Git & GitHub
+- npm
+- nodemon ^3.1.14 - Auto-restart server during development
+
+---
 
 ## 📁 Project Structure
-   finance-tracker-week-12/
-   ├── backend/          # Express API
-   │   ├── app.js       # Routes: GET/POST/DELETE /api/transactions
-   │   └── server.js    # Runs on port 3000
-   ├── frontend/         # React + Vite
-   │   ├── src/
-   │   │   ├── components/
-   │   │   └── App.jsx
-   │   └── vite.config.js
-   └── README.md
-## ⚙️ Installation & Setup
-### Test Run - 1st May 2026
-**Tester**: Juliet Adhiambo  
-**Result**: PASS - All core features working in Codespaces
-- Income/Expense CRUD functional
-- Balance calculation correct  
-- Responsive on mobile view
-### Bugs Found & Fixed
-- **CORS Error**: Frontend port 5173 couldn’t fetch from backend 3000. **Fix**: Added `app.use(cors())` in backend.
-- **Typo Risk**: Folder names case-sensitive. `cd fronted` fails — must be `cd frontend`.
-- **npm install**: Slow on cyber café WiFi. Takes 3-5 min per folder.
+finance-tracker-week-12/
+│
+├── backend/              # Express API
+│   ├── app.js           # Routes (GET, POST, DELETE)
+│   └── server.js        # Server entry (port 3000)
+│
+├── frontend/            # React (Vite)
+│   ├── src/
+│   │   ├── components/
+│   │   └── App.jsx
+│   └── vite.config.js
+│
+├── README.md
+├── CONTRIBUTORS.md
 
-### Known Limitations
-- No data persistence — transactions reset if backend restarts
-- No input validation for negative numbers yet
-- No user login/auth
-  ### Final Submission Checklist - 1st May 2026
-- [x] Backend API running: GET/POST/DELETE /api/transactions
-- [x] Frontend UI: Forms by Moureen, Styled by Michelle/Maria, Responsive by Erick
-- [x] Core Logic: Income by Dolla, Expense by Naomi, Balance/Delete by Patrick
-- [x] Testing: Juliet - All features pass in Codespaces
-- [x] GitHub: Public repo with README + correct folder structure
-- [x] Integration: CORS fixed, frontend connects to backend
-### 1. Clone the repository
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone Repository
 ```bash
 git clone https://github.com/lucywachu77-dev/finance-tracker-week-12.git
 cd finance-tracker-week-12
+
+TEST EDIT FROM README CLEANUP BRANCH
+
+# 💰 Finance Tracker
+
+A simple and clean web-based Finance Tracker that allows users to record and manage their income and expenses.
+
+## 📌 Features
+
+- Add transactions (Income or Expense)
+- Input description, amount, and date
+- Clean and minimal user interface
+- Easy to extend with styling and functionality
+
+## 🧱 Project Structure
+finance-tracker/
+│── index.html
+│── README.md
+│── styles.css
+
+
+## 🖥️ Technologies Used
+
+- HTML5  
+- (Optional for future improvements)
+  - CSS3
+  
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/luna256-sky/finance-tracker.git
+
