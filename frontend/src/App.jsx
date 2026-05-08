@@ -3,7 +3,7 @@ import TransactionForm from "./components/TransactionForm";
 
 function App() {
   // =====================
-  // STATE (Patrick core logic)
+  // STATE
   // =====================
   const [transactions, setTransactions] = useState([]);
 
@@ -12,7 +12,7 @@ function App() {
   const [balance, setBalance] = useState(0);
 
   // =====================
-  // ADD TRANSACTION (from Moureen form)
+  // ADD TRANSACTION
   // =====================
   const addTransaction = (transaction) => {
     setTransactions((prev) => [
@@ -22,7 +22,7 @@ function App() {
   };
 
   // =====================
-  // DELETE TRANSACTION (Patrick logic)
+  // DELETE TRANSACTION
   // =====================
   const deleteTransaction = (id) => {
     setTransactions((prev) =>
@@ -31,7 +31,7 @@ function App() {
   };
 
   // =====================
-  // CALCULATE INCOME / EXPENSE / BALANCE
+  // CALCULATIONS
   // =====================
   useEffect(() => {
     const totalIncome = transactions
@@ -48,44 +48,79 @@ function App() {
   }, [transactions]);
 
   // =====================
+  // STYLES
+  // =====================
+  const containerStyle = {
+    padding: "20px",
+    maxWidth: "500px",
+    margin: "auto",
+    fontFamily: "Arial",
+  };
+
+  const buttonStyle = {
+    marginLeft: "10px",
+    backgroundColor: "#e74c3c",
+    color: "white",
+    border: "none",
+    padding: "5px 10px",
+    cursor: "pointer",
+    borderRadius: "5px",
+  };
+
+  const incomeStyle = { color: "green" };
+  const expenseStyle = { color: "red" };
+
+  // =====================
   // UI
   // =====================
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={containerStyle}>
       <h1>Finance Tracker 💰</h1>
 
-      {/* MOUREEN FORM CONNECTED HERE */}
+      {/* FORM */}
       <TransactionForm addTransaction={addTransaction} />
 
       {/* SUMMARY */}
       <div style={{ marginTop: "20px" }}>
         <h3>Summary</h3>
-        <p>Income: Ksh {income}</p>
-        <p>Expense: Ksh {expense}</p>
+        <p style={incomeStyle}>Income: Ksh {income}</p>
+        <p style={expenseStyle}>Expense: Ksh {expense}</p>
         <h2>Balance: Ksh {balance}</h2>
       </div>
 
-      {/* TRANSACTIONS LIST */}
-      <ul style={{ marginTop: "20px" }}>
-        {transactions.map((t) => (
-          <li
-            key={t.id}
-            style={{
-              marginBottom: "10px",
-              color: t.type === "income" ? "green" : "red"
-            }}
-          >
-            <strong>{t.description}</strong> - Ksh {t.amount} ({t.type})
+      {/* TRANSACTIONS */}
+      <div style={{ marginTop: "20px" }}>
+        <h3>Transaction History</h3>
 
-            <button
-              onClick={() => deleteTransaction(t.id)}
-              style={{ marginLeft: "10px" }}
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
+        {transactions.length === 0 ? (
+          <p>No transactions yet.</p>
+        ) : (
+          <ul style={{ padding: 0 }}>
+            {transactions.map((t) => (
+              <li
+                key={t.id}
+                style={{
+                  listStyle: "none",
+                  marginBottom: "10px",
+                  padding: "10px",
+                  border: "1px solid #ddd",
+                  borderRadius: "5px",
+                  color: t.type === "income" ? "green" : "red",
+                }}
+              >
+                <strong>{t.description}</strong> - Ksh {t.amount} ({t.type})
+
+                <button
+                  style={buttonStyle}
+                  onClick={() => deleteTransaction(t.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
