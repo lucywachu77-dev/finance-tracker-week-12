@@ -83,3 +83,19 @@
         .btn:hover {
             background: #27ae60;
         }
+
+      .transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+.income {
+  background-color: #d4edda;
+}
+
+.expense {
+  background-color: #f8d7da;
+}
