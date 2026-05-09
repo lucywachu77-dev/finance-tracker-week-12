@@ -1,88 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import IncomeForm from "./components/IncomeForm";
+import IncomeList from "./components/IncomeList";
 
-function TransactionForm({ addTransaction }) {
-  const [type, setType] = useState("");
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState("");
-  const [date, setDate] = useState("");
+function App() {
+  const [transactions, setTransactions] = useState([]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // ✅ Fetch existing transactions from backend
+  useEffect(() => {
+    fetch("http://localhost:3000/api/transactions")
+      .then((res) => res.json())
+      .then((data) => setTransactions(data))
+      .catch((err) => console.error("Fetch error:", err));
+  }, []);
 
-    if (!type || !description || !amount || !date) {
-      alert("Please fill all fields");
-      return;
+  // ✅ Add new transaction (income or expense)
+  const addTransaction = async (transaction) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/transactions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(transaction),
+      });
+
+      const saved = await response.json();
+
+      setTransactions((prev) => [...prev, saved]);
+    } catch (error) {
+      console.error("Error adding transaction:", error);
     }
-
-    const newTransaction = {
-      type,
-      description,
-      amount: Number(amount),
-      date,
-    };
-
-    addTransaction(newTransaction);
-
-    // clear form
-    setType("");
-    setDescription("");
-    setAmount("");
-    setDate("");
   };
 
+  // ✅ Calculate totals
+  const incomeTotal = transactions
+    .filter((t) => t.type === "income")
+    .reduce((sum, t) => sum + Number(t.amount), 0);
+
+  const expenseTotal = transactions
+    .filter((t) => t.type === "expense")
+    .reduce((sum, t) => sum + Number(t.amount), 0);
+
+  const balance = incomeTotal - expenseTotal;
+
   return (
-    <div className="form-section">
-      <h3>Add Transaction</h3>
+    <div className="app">
+      <h1>💰 Finance Tracker</h1>
 
-      <form onSubmit={handleSubmit}>
-        {/* TYPE */}
-        <div className="form-control">
-          <label>Type</label>
-          <select value={type} onChange={(e) => setType(e.target.value)}>
-            <option value="">Select</option>
-            <option value="income">Income</option>
-            <option value="expense">Expense</option>
-          </select>
-        </div>
+      {/* BALANCE */}
+      <div className="summary">
+        <h2>Your Balance: KES {balance}</h2>
+        <p>Income: KES {incomeTotal}</p>
+        <p>Expenses: KES {expenseTotal}</p>
+      </div>
 
-        {/* DESCRIPTION */}
-        <div className="form-control">
-          <label>Description</label>
-          <input
-            type="text"
-            placeholder="e.g. Salary, Food, Rent"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
+      {/* FORM */}
+      <IncomeForm onAddIncome={addTransaction} />
 
-        {/* AMOUNT */}
-        <div className="form-control">
-          <label>Amount</label>
-          <input
-            type="number"
-            placeholder="Enter amount"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-          />
-        </div>
-
-        {/* DATE */}
-        <div className="form-control">
-          <label>Date</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-
-        <button type="submit" className="btn btn-add">
-          Add Transaction
-        </button>
-      </form>
+      {/* LIST */}
+      <IncomeList transactions={transactions} />
     </div>
   );
 }
 
-export default TransactionForm;
+export default App;
