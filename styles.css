@@ -1,0 +1,101 @@
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-section {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+             margin-bottom: 5px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #555;
+
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+         .btn:hover {
+            background: #27ae60;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #27ae60;
+        }
+
+      .transaction-item {
+         display: flex;
+         justify-content: space-between;
+         padding: 10px;
+         margin: 10px 0;
+         border-radius: 8px;
+    }
+
+    .income {
+        background-color: #d4edda;
+    }
+
+   .expense {
+        background-color: #f8d7da;
+  }
